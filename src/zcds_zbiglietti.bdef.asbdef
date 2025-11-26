@@ -3,6 +3,7 @@ strict ( 2 );
 //with draft;
 define behavior for ZCDS_ZBIGLIETTI //alias <alias_name>
 persistent table zbiglietto_nn
+//draft table zbiglietto_nn_draft
 lock master
 authorization master ( instance )
 etag master ModificatoA
@@ -22,3 +23,9 @@ etag master ModificatoA
   ModificatoA = modificato_a;
   }
 }
+//{
+//draft action Activate optimized;
+//draft action Discard;
+//draft action Edit;
+//draft action Resume;
+//draft determine action Prepare; }

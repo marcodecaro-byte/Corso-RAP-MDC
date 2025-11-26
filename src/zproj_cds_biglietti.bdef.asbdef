@@ -1,5 +1,5 @@
 projection;
-strict ( 2 );
+strict( 2 );
 
 define behavior for ZPROJ_CDS_BIGLIETTI //alias <alias_name>
 {

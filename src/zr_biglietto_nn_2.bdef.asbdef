@@ -1,5 +1,5 @@
 managed implementation in class ZBP_R_BIGLIETTO_NN_2 unique;
-strict ( 2 );
+strict( 2 );
 with draft;
 extensible;
 define behavior for ZR_BIGLIETTO_NN_2 alias Biglietto
@@ -9,9 +9,10 @@ draft table ZBGLIETTO_NN_2_D
 etag master Locallastchanged
 lock master total etag ModificatoA
 authorization master( global )
+early numbering
 {
-  field ( mandatory : create )
-   IdBiglietto;
+//  field ( mandatory : create )
+//   IdBiglietto;
 
   field ( readonly )
    CreatoDa,
@@ -20,7 +21,8 @@ authorization master( global )
    ModificatoA,
    Locallastchanged;
 
-  field ( readonly : update )
+//  field ( readonly : update )
+  field ( readonly )
    IdBiglietto;
 
 
