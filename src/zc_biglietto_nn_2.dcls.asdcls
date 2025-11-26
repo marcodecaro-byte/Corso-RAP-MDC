@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_BIGLIETTO_NN_2'
+@MappingRole: true
+define role ZC_BIGLIETTO_NN_2 {
+  grant select on ZC_BIGLIETTO_NN_2
+  where INHERITING CONDITIONS FROM ENTITY ZR_BIGLIETTO_NN_2 REPLACING { ROOT WITH _BaseEntity };
+}

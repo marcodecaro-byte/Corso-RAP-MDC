@@ -1,0 +1,97 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'IdBiglietto'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'IdBiglietto'
+annotate view ZC_BIGLIETTO_NN_2 with
+{
+  @EndUserText.label: 'IdBiglietto'
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: 'IdBiglietto'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    label: 'IdBiglietto'
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  IdBiglietto;
+  
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  @UI.lineItem: [ {
+    position: 20 
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  CreatoDa;
+  
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  @UI.lineItem: [ {
+    position: 30 
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  CreatoA;
+  
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  ModificatoDa;
+  
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  @UI.lineItem: [ {
+    position: 50 
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  ModificatoA;
+  
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  @UI.lineItem: [ {
+    position: 60 
+  } ]
+  @UI.selectionField: [ {
+    position: 60 
+  } ]
+  Locallastchanged;
+  
+  @EndUserText.label: '_BaseEntity'
+  @UI.identification: [ {
+    position: 70 , 
+    label: '_BaseEntity'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 , 
+    label: '_BaseEntity'
+  } ]
+  @UI.selectionField: [ {
+    position: 70 
+  } ]
+  _BaseEntity;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Servizio per ZBIGLIETTO'
+define service ZUI_BIGLIETTO_MDC_SRV_V2 {
+  expose ZPROJ_CDS_BIGLIETTI;
+}

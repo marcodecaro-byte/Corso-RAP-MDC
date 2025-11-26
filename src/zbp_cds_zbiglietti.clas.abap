@@ -1,0 +1,5 @@
+CLASS zbp_cds_zbiglietti DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcds_zbiglietti.
+ENDCLASS.
+
+CLASS zbp_cds_zbiglietti IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,24 @@
+managed implementation in class zbp_cds_zbiglietti unique;
+strict ( 2 );
+//with draft;
+define behavior for ZCDS_ZBIGLIETTI //alias <alias_name>
+persistent table zbiglietto_nn
+lock master
+authorization master ( instance )
+etag master ModificatoA
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( mandatory : create ) IdBiglietto;
+  field ( readonly: update ) IdBiglietto;
+
+  mapping for zbiglietto_nn
+  {
+  IdBiglietto = id_biglietto;
+  CreatoDa = creato_da;
+  CreatoA = creato_a;
+  ModificatoDa = modificato_da;
+  ModificatoA = modificato_a;
+  }
+}
