@@ -25,6 +25,19 @@ annotate view ZC_BIGLIETTO_NN_2 with
     position: 10 
   } ]
   IdBiglietto;
+
+  @UI.identification: [ {
+    position: 15 , 
+    label: 'Stato'
+  } ]
+  @UI.lineItem: [ {
+    position: 15 , 
+    label: 'Stato'
+  } ]
+  @UI.selectionField: [ {
+    position: 15 
+  } ]
+  stato;
   
   @UI.identification: [ {
     position: 20 

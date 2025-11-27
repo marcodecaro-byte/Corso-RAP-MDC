@@ -3,9 +3,10 @@
 @ObjectModel.sapObjectNodeType.name: 'ZBIGLIETTO_NN_2'
 @EndUserText.label: '###GENERATED Core Data Service Entity'
 define root view entity ZR_BIGLIETTO_NN_2
-  as select from ZBIGLIETTO_NN_2 as Biglietto
+  as select from zbiglietto_nn_2 as Biglietto
 {
   key id_biglietto as IdBiglietto,
+  stato as stato,
   @Semantics.user.createdBy: true
   creato_da as CreatoDa,
   @Semantics.systemDateTime.createdAt: true
