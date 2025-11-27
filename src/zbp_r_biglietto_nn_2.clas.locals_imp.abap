@@ -7,8 +7,16 @@ CLASS lhc_zr_biglietto_nn_2 DEFINITION INHERITING FROM cl_abap_behavior_handler.
         RESULT result,
       earlynumbering_create FOR NUMBERING
         IMPORTING entities FOR CREATE Biglietto,
-        CheckStatus FOR VALIDATE ON SAVE
-        IMPORTING keys FOR Biglietto~CheckStatus.
+      CheckStatus FOR VALIDATE ON SAVE
+        IMPORTING keys FOR Biglietto~CheckStatus,
+      GetDefaultsForCreate FOR READ
+        IMPORTING keys FOR FUNCTION Biglietto~GetDefaultsForCreate RESULT result,
+      get_instance_features FOR INSTANCE FEATURES
+        IMPORTING keys REQUEST requested_features FOR Biglietto RESULT result,
+      onSave FOR DETERMINE ON SAVE
+        IMPORTING keys FOR Biglietto~onSave,
+      CustomDelete FOR MODIFY
+        IMPORTING keys FOR ACTION Biglietto~CustomDelete RESULT result.
 ENDCLASS.
 
 CLASS lhc_zr_biglietto_nn_2 IMPLEMENTATION.
@@ -80,5 +88,91 @@ CLASS lhc_zr_biglietto_nn_2 IMPLEMENTATION.
         %element-Stato = if_abap_behv=>mk-on )
       TO reported-biglietto.
     ENDLOOP.
+  ENDMETHOD.
+
+  METHOD GetDefaultsForCreate.
+    result = VALUE #( FOR key IN keys (
+             %cid = key-%cid
+             %param-stato = 'BOZZA'
+              ) ).
+  ENDMETHOD.
+
+  METHOD get_instance_features.
+    DATA:
+        ls_result LIKE LINE OF result.
+    READ ENTITIES OF zr_biglietto_nn_2
+        IN LOCAL MODE
+        ENTITY Biglietto
+        FIELDS ( Stato )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(lt_biglietto).
+    LOOP AT lt_biglietto
+            INTO DATA(ls_biglietto).
+      CLEAR ls_result.
+      ls_result-%tky = ls_biglietto-%tky.
+      ls_result-%field-Stato = if_abap_behv=>fc-f-read_only.
+      ls_result-%action-CustomDelete = COND #(
+        WHEN ls_biglietto-Stato = 'FINALE'
+            THEN if_abap_behv=>fc-o-enabled
+            ELSE if_abap_behv=>fc-o-disabled ).
+      APPEND ls_result
+        TO result.
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD onSave.
+    DATA:
+        lt_update TYPE TABLE FOR UPDATE zr_biglietto_nn_2.
+    READ ENTITIES OF zr_biglietto_nn_2 IN LOCAL MODE
+    ENTITY Biglietto
+    FIELDS (  Stato )
+    WITH CORRESPONDING #( keys )
+    RESULT DATA(lt_biglietto).
+
+    LOOP AT lt_biglietto
+    INTO DATA(ls_biglietto).
+      APPEND VALUE #(
+              %tky = ls_biglietto-%tky
+              Stato = 'FINALE'
+              %control-Stato = if_abap_behv=>mk-on )
+              TO lt_update.
+    ENDLOOP.
+
+    IF lt_update IS NOT INITIAL.
+      MODIFY ENTITIES OF zr_biglietto_nn_2
+          IN LOCAL MODE
+          ENTITY Biglietto
+          UPDATE FROM lt_update.
+    ENDIF.
+  ENDMETHOD.
+
+  METHOD CustomDelete.
+    DATA:
+      lt_update TYPE TABLE FOR UPDATE zr_biglietto_nn_2,
+      ls_update LIKE LINE OF lt_update.
+
+    READ ENTITIES OF zr_biglietto_nn_2
+        IN LOCAL MODE
+        ENTITY Biglietto
+        ALL FIELDS
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(lt_biglietto).
+    LOOP AT lt_biglietto
+            ASSIGNING FIELD-SYMBOL(<biglietto>).
+      <biglietto>-Stato = 'CANC'.
+      APPEND VALUE #(
+              %tky = <biglietto>-%tky
+              %param = <biglietto> )
+          TO result.
+      ls_update = CORRESPONDING #( <biglietto> ).
+      ls_update-%control-Stato = if_abap_behv=>mk-on.
+      APPEND ls_update
+        TO lt_update.
+    ENDLOOP.
+
+    MODIFY ENTITIES OF zr_biglietto_nn_2
+        IN LOCAL MODE
+        ENTITY Biglietto
+        UPDATE FROM lt_update.
   ENDMETHOD.
 ENDCLASS.

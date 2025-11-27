@@ -21,12 +21,15 @@ early numbering
   ModificatoA,
   Locallastchanged;
 
+  field ( features : instance )
+  Stato;
+
   //  field ( readonly : update )
   field ( readonly )
   IdBiglietto;
 
 
-  create;
+  create { default function GetDefaultsForCreate; }
   update;
   delete;
 
@@ -34,9 +37,14 @@ early numbering
   draft action Discard;
   draft action Edit;
   draft action Resume;
-  draft determine action Prepare;
+  draft determine action Prepare { validation CheckStatus; }
 
-  validation CheckStatus on save { field Stato; }
+  action ( features: instance ) CustomDelete result [1] $self;
+
+  validation CheckStatus on save
+  { field Stato;
+  }
+  determination onSave on save { create; }
 
   mapping for zbiglietto_nn_2 corresponding extensible
     {
