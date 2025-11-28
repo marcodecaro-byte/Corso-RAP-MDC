@@ -1,0 +1,51 @@
+managed implementation in class ZBP_R_COMPONENTI_MDC unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_COMPONENTI_MDC alias ZrComponentiMdc
+persistent table ZCOMPONENTI_MDC
+extensible
+draft table ZCMPONENTI_MDC_D
+etag master Locallastchanged
+lock master total etag ModificatoA
+authorization master( global )
+{
+  field ( mandatory : create )
+   IdBiglietto,
+   Progressivo;
+
+  field ( readonly )
+   CreatoDa,
+   CreatoA,
+   ModificatoDa,
+   ModificatoA,
+   Locallastchanged;
+
+  field ( readonly : update )
+   IdBiglietto,
+   Progressivo;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCOMPONENTI_MDC corresponding extensible
+  {
+    IdBiglietto = id_biglietto;
+    Progressivo = progressivo;
+    Tipoutente = tipoutente;
+    CreatoDa = creato_da;
+    CreatoA = creato_a;
+    ModificatoDa = modificato_da;
+    ModificatoA = modificato_a;
+    Locallastchanged = locallastchanged;
+  }
+
+}

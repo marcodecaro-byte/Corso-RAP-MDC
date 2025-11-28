@@ -7,53 +7,55 @@ persistent table zbiglietto_nn_2
 extensible
 draft table zbglietto_nn_2_d
 etag master Locallastchanged
-lock master total etag ModificatoA
+lock master total etag Modificatoa
 authorization master ( global )
 early numbering
 {
   //  field ( mandatory : create )
-  //   IdBiglietto;
+  //  IdBiglietto;
+
+  field ( features : instance )
+  stato;
 
   field ( readonly )
   CreatoDa,
-  CreatoA,
+  Creatoa,
   ModificatoDa,
-  ModificatoA,
+  Modificatoa,
   Locallastchanged;
-
-  field ( features : instance )
-  Stato;
 
   //  field ( readonly : update )
   field ( readonly )
   IdBiglietto;
 
-
   create { default function GetDefaultsForCreate; }
+  //  create;
   update;
   delete;
+
+  // azioni, sono dei bottoncini aggiuntivi per delle azioni custom
+  // con il feature: Instance Features andiamo a disattivare le funzonalita\pulsantino
+  action ( features : instance ) customdelete result [1] $self;
 
   draft action Activate optimized;
   draft action Discard;
   draft action Edit;
   draft action Resume;
-  draft determine action Prepare { validation CheckStatus; }
+  draft determine action Prepare { validation checkstatus; }
 
-  action ( features: instance ) CustomDelete result [1] $self;
+  //association _componenti {create; with draft; }
 
-  validation CheckStatus on save
-  { field Stato;
-  }
+  validation checkstatus on save { field stato; }
   determination onSave on save { create; }
-
+  determination changestatus on save { create; }
   mapping for zbiglietto_nn_2 corresponding extensible
     {
       IdBiglietto      = id_biglietto;
       stato            = stato;
       CreatoDa         = creato_da;
-      CreatoA          = creato_a;
+      Creatoa          = creato_a;
       ModificatoDa     = modificato_da;
-      ModificatoA      = modificato_a;
+      Modificatoa      = modificato_a;
       Locallastchanged = locallastchanged;
     }
 

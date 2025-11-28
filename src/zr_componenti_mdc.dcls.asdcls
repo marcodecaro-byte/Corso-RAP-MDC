@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_COMPONENTI_MDC'
+@MappingRole: true
+define role ZR_COMPONENTI_MDC {
+  grant select on ZR_COMPONENTI_MDC
+  where TRUE;
+}

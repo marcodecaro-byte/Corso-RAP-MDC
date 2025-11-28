@@ -6,6 +6,8 @@
     name: 'ZC_BIGLIETTO_NN_2'
   }
 }
-define service ZUI_BIGLIETTO_NN_2_O4 provider contracts odata_v4_ui {
+define service ZUI_BIGLIETTO_NN_2_O4
+  provider contracts odata_v4_ui {
   expose ZC_BIGLIETTO_NN_2 as Biglietto;
+  expose ZC_COMPONENTI_MDC as Componenti;
 }

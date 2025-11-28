@@ -3,128 +3,117 @@
 @UI.headerInfo.title.value: 'IdBiglietto'
 @UI.headerInfo.description.type: #STANDARD
 @UI.headerInfo.description.value: 'IdBiglietto'
-annotate view ZC_BIGLIETTO_NN_2 with
+annotate view ZC_COMPONENTI_MDC with
 {
-  @EndUserText.label: 'IdBiglietto'
   @UI.facet: [ {
     label: 'General Information', 
     id: 'GeneralInfo', 
     purpose: #STANDARD, 
     position: 10 , 
     type: #IDENTIFICATION_REFERENCE
-  },
-  {
-  label: 'Componenti',
-  id: 'Componenti',
-  purpose: #STANDARD,
-  position: 20 ,
-  type: #LINEITEM_REFERENCE,
-  targetElement: '_Componenti' 
-  }
-  ]
+  } ]
   @UI.identification: [ {
-    position: 10 , 
-    label: 'IdBiglietto'
-  } ,
-  { position: 10,
-  type: #FOR_ACTION,
-  dataAction: 'CustomDelete',
-  label: 'Elimina (custom)'
-   } ]
+    position: 10 
+  } ]
   @UI.lineItem: [ {
-    position: 10 , 
-    label: 'IdBiglietto'
-  },
-    { position: 10,
-  type: #FOR_ACTION,
-  dataAction: 'CustomDelete',
-  label: 'Elimina (custom)'
-   } ] 
-
+    position: 10 
+  } ]
   @UI.selectionField: [ {
     position: 10 
   } ]
   IdBiglietto;
-
+  
+  @EndUserText.label: 'Progressivo'
   @UI.identification: [ {
-    position: 15 , 
-    label: 'Stato'
+    position: 20 , 
+    label: 'Progressivo'
   } ]
   @UI.lineItem: [ {
-    position: 15 , 
-    label: 'Stato'
+    position: 20 , 
+    label: 'Progressivo'
   } ]
   @UI.selectionField: [ {
-    position: 15 
+    position: 20 
   } ]
-  stato;
+  Progressivo;
   
   @UI.identification: [ {
-    position: 20 
+    position: 30 
   } ]
   @UI.lineItem: [ {
-    position: 20 
+    position: 30 
   } ]
   @UI.selectionField: [ {
-    position: 20 
+    position: 30 
+  } ]
+  Tipoutente;
+  
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
   } ]
   CreatoDa;
   
   @UI.identification: [ {
-    position: 30 
+    position: 50 
   } ]
   @UI.lineItem: [ {
-    position: 30 
+    position: 50 
   } ]
   @UI.selectionField: [ {
-    position: 30 
+    position: 50 
   } ]
   CreatoA;
   
   @UI.identification: [ {
-    position: 40 
+    position: 60 
   } ]
   @UI.lineItem: [ {
-    position: 40 
+    position: 60 
   } ]
   @UI.selectionField: [ {
-    position: 40 
+    position: 60 
   } ]
   ModificatoDa;
   
   @UI.identification: [ {
-    position: 50 
+    position: 70 
   } ]
   @UI.lineItem: [ {
-    position: 50 
+    position: 70 
   } ]
   @UI.selectionField: [ {
-    position: 50 
+    position: 70 
   } ]
   ModificatoA;
   
   @UI.identification: [ {
-    position: 60 
+    position: 80 
   } ]
   @UI.lineItem: [ {
-    position: 60 
+    position: 80 
   } ]
   @UI.selectionField: [ {
-    position: 60 
+    position: 80 
   } ]
   Locallastchanged;
   
   @EndUserText.label: '_BaseEntity'
   @UI.identification: [ {
-    position: 70 , 
+    position: 90 , 
     label: '_BaseEntity'
   } ]
   @UI.lineItem: [ {
-    position: 70 , 
+    position: 90 , 
     label: '_BaseEntity'
   } ]
   @UI.selectionField: [ {
-    position: 70 
+    position: 90 
   } ]
   _BaseEntity;
 }
